@@ -15,7 +15,7 @@ public class GerenciadorEnvio
     {
         if (string.IsNullOrWhiteSpace(telefone) || string.IsNullOrWhiteSpace(mensagem))
         {
-            throw new ArgumentException("Telefone e mensagem são obrigatórios");
+            throw new ArgumentException("Telefone e mensagem são obrigatórios.");
         } 
         if (telefone.Length < 10)
         {
