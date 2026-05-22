@@ -1,2 +1,4 @@
 <Solution>
+  <Project Path="SistemaNotificacao.Core/SistemaNotificacao.Core.csproj" />
+  <Project Path="SistemaNotificacao.Tests/SistemaNotificacao.Tests.csproj" />
 </Solution>
