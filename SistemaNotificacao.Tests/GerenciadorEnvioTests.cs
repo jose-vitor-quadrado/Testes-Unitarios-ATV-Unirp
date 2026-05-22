@@ -24,7 +24,27 @@ public class GerenciadorEnvioTests
         string resultado = gerenciador.ProcessarNotificacaoUrgente(telefoneFake, mensagemFake);
 
         // Assert
+        resultado.Should().Be("Processado com sucesso");
+
+        fakeService.MensagemRecebida.Should().StartWith("[URGENTE]");
         fakeService.TelefoneRecebido.Should().Be(telefoneFake);
+    }
+
+    [Fact]
+    public void ProcessarNotificacaoUrgente_TelefoneInvalido_DeveLancarExcecao()
+    {
+        // Arrange
+        string telefoneInvalido = _faker.Phone.PhoneNumber(_faker.Random.AlphaNumeric(8));
+        string mensagemFake = _faker.Lorem.Sentence();
+
+        var fakeService = new FakeNotificacaoService();
+        var gerenciador = new GerenciadorEnvio(fakeService);
+
+        // Act
+        Action acao = () => gerenciador.ProcessarNotificacaoUrgente(telefoneInvalido, mensagemFake);
+
+        // Assert
+        acao.Should().Throw<ArgumentException>().WithMessage("Telefone inválido.");
     }
 
     [Theory]
